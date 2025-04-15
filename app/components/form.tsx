@@ -12,10 +12,6 @@ export default function Form() {
   const [interest, setInterest] = useState("frontend");
 
   const handleSubmit = async () => {
-    // e.preventDefault();
-
-
-
     const payload = {
       fullName,
       location,
@@ -24,8 +20,6 @@ export default function Form() {
       role,
       interest,
     };
-
-    console.log("Form submitted", {payload, url: process.env.NEXT_PUBLIC_SHEET_URL});
 
     try {
       const response = await fetch(process.env.NEXT_PUBLIC_SHEET_URL || "", {
@@ -155,7 +149,7 @@ export default function Form() {
           <div className="flex justify-center mt-6">
             <button
               type="button"
-              onClick={(e) => handleSubmit()}
+              onClick={() => handleSubmit()}
               className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               Submit
