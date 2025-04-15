@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Head from "next/head";
 import Form from "./components/form";
 import SoftCursor from "./components/softCursor";
 import { motion } from "framer-motion";
@@ -29,75 +30,105 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col lg:grid grid-cols-6 items-center justify-items-center min-h-screen p-0 m-0 font-[family-name:var(--font-geist-sans)]">
-      {/* Left Side */}
-      <div className="flex flex-col items-start justify-start bg-blue-700 h-full w-full p-8 lg:col-span-4 bg-[url('/grid.png')]">
-        <div className="h-full">
-          <AnimatedText />
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1 }}
-            className="text-lg mt-4 lg:mt-0 lg:text-2xl font-semibold text-left text-white z-10"
-          >
-            You&#39;re not alone on your tech journey.<br />
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.5 }}
-            className="text-left text-white z-10 font-light"
-          >
-            We connect curious, passionate learners with experienced mentors
-            <br />
-            who&#39;ve been where you are—so you can grow with guidance, not guesswork.
-          </motion.p>
+    <>
+      <Head>
+        <title>handheld — Mentorship for Techies</title>
+        <meta
+          name="description"
+          content="Connect with mentors, grow confidently, and support the future of tech with handheld."
+        />
+        <meta property="og:title" content="handheld — Mentorship for Techies" />
+        <meta
+          property="og:description"
+          content="Connect with mentors, grow confidently, and support the future of tech with handheld."
+        />
+        <meta property="og:image" content="/mentor.png" />
+        <meta property="og:url" content="https://join-handheld.vercel.app/" />
+        <meta property="og:type" content="website" />
 
-          <Image
-            alt="3d character"
-            src={"/sally.png"}
-            width={500}
-            height={500}
-            className="absolute bottom-0 right-50 z-0 greyscale-[100%] hidden lg:block"
-          />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="handheld — Mentorship for Techies"
+        />
+        <meta
+          name="twitter:description"
+          content="Connect with mentors, grow confidently, and support the future of tech with handheld."
+        />
+        <meta name="twitter:image" content="/mentee.png" />
+      </Head>
+      <div className="flex flex-col lg:grid grid-cols-6 items-center justify-items-center min-h-screen p-0 m-0 font-[family-name:var(--font-geist-sans)]">
+        {/* Left Side */}
+        <div className="flex flex-col items-start justify-start bg-blue-700 h-full w-full p-8 lg:col-span-4 bg-[url('/grid.png')]">
+          <div className="h-full">
+            <AnimatedText />
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1 }}
+              className="text-lg mt-4 lg:mt-0 lg:text-2xl font-semibold text-left text-white z-10"
+            >
+              You&#39;re not alone on your tech journey.
+              <br />
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.5 }}
+              className="text-left text-white z-10 font-light"
+            >
+              We connect curious, passionate learners with experienced mentors
+              <br />
+              who&#39;ve been where you are—so you can grow with guidance, not
+              guesswork.
+            </motion.p>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 mt-28 w-fit gap-4">
-            {participants?.map((participant, ind) => (
-              <motion.div
-                key={ind}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: ind * 1 }}
-                className="lg:w-[200px] max-w-md rounded-lg overflow-hidden bg-white/10 backdrop-blur-sm"
-              >
-                <Image
-                  alt="grid"
-                  src={participant.image}
-                  width={200}
-                  height={200}
-                  className="w-full lg:w-[200px] bg-amber-400"
-                />
-                <div className="p-2">
-                  <p className="text-lg font-semibold">{participant.name}</p>
-                  <p className="text-sm font-light">
-                    {participant.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+            <Image
+              alt="3d character"
+              src={"/sally.png"}
+              width={500}
+              height={500}
+              className="absolute bottom-0 right-50 z-0 greyscale-[100%] hidden lg:block"
+            />
+
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 mt-28 w-fit gap-4">
+              {participants?.map((participant, ind) => (
+                <motion.div
+                  key={ind}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: ind * 1 }}
+                  className="lg:w-[200px] max-w-md rounded-lg overflow-hidden bg-white/10 backdrop-blur-sm"
+                >
+                  <Image
+                    alt="grid"
+                    src={participant.image}
+                    width={200}
+                    height={200}
+                    className="w-full lg:w-[200px] bg-amber-400"
+                  />
+                  <div className="p-2">
+                    <p className="text-lg font-semibold">{participant.name}</p>
+                    <p className="text-sm font-light">
+                      {participant.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
+
+          <p className="text-sm hidden lg:block">
+            handheld © · {date.getFullYear()}
+          </p>
         </div>
 
-        <p className="text-sm hidden lg:block">
-          handheld © · {date.getFullYear()}
-        </p>
+        {/* Right Side */}
+        <div className="relative w-full h-full lg:col-span-2 overflow-y-clip bg-[url('/grid.png')] bg-cover bg-center">
+          <Form />
+        </div>
+        <SoftCursor />
       </div>
-
-      {/* Right Side */}
-      <div className="relative w-full h-full lg:col-span-2 overflow-y-clip bg-[url('/grid.png')] bg-cover bg-center">
-        <Form />
-      </div>
-      <SoftCursor />
-    </div>
+    </>
   );
 }
