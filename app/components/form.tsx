@@ -2,16 +2,24 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 export default function Form() {
   const [fullName, setFullName] = useState("");
   const [location, setLocation] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("234");
   const [role, setRole] = useState("mentee");
   const [interest, setInterest] = useState("frontend");
+  const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
+    // Validation to ensure all fields are filled
+    if (!fullName || !location || !phone) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+  
     const payload = {
       fullName,
       location,
@@ -20,22 +28,35 @@ export default function Form() {
       role,
       interest,
     };
-
+    toast.loading("Submitting...");
+    setLoading(true);
     try {
       const response = await fetch(process.env.NEXT_PUBLIC_SHEET_URL || "", {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify(payload),
       });
-
+  
       const result = await response.json();
-      console.log("Submission result", result);
-    //   alert(result.result);
+      toast.dismiss();
+      toast.success(result.result || "Form submitted successfully!");
+  
+      // Reset form fields
+      setFullName("");
+      setLocation("");
+      setEmail("");
+      setPhone("234");  // Reset phone to default value
+      setRole("mentee");
+      setInterest("frontend");
+  
     } catch (error) {
       console.error("Submission failed", error);
-      alert("Something went wrong!");
+      toast.error("Submission failed");
+    } finally {
+      setLoading(false);
     }
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -74,15 +95,19 @@ export default function Form() {
             <label htmlFor="location" className="text-white mb-2 text-sm">
               Location
             </label>
-            <input
+            <select
               id="location"
-              type="text"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               className="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Your Location"
               required
-            />
+            >
+              <option value="">Select your location</option>
+              <option value="lagos">Lagos</option>
+              <option value="abuja">Abuja</option>
+              <option value="london">London</option>
+              <option value="accra">Accra</option>
+            </select>
           </div>
 
           <div className="flex flex-col">
@@ -126,6 +151,7 @@ export default function Form() {
             >
               <option value="mentee">Mentee</option>
               <option value="mentor">Mentor</option>
+              <option value="mentor">Sponsor</option>
             </select>
           </div>
 
@@ -148,11 +174,12 @@ export default function Form() {
 
           <div className="flex justify-center mt-6">
             <button
+              disabled={isLoading}
               type="button"
               onClick={() => handleSubmit()}
-              className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`px-6 py-2 ${isLoading ? 'bg-gray-500' : 'bg-blue-500'} text-white rounded-lg ${isLoading ? 'hover:bg-gray-500' : 'hover:bg-blue-600'}  focus:outline-none focus:ring-2 focus:ring-blue-500`}
             >
-              Submit
+              {isLoading ? "Submitting..." : "Submit"}
             </button>
           </div>
         </form>
