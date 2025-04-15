@@ -1,28 +1,58 @@
+"use client";
 import Image from "next/image";
 import Form from "./components/form";
 import SoftCursor from "./components/softCursor";
 import { motion } from "framer-motion";
+import AnimatedText from "./components/animatedText";
 
 export default function Home() {
   const date = new Date();
+  const participants = [
+    {
+      name: "Mentee",
+      description:
+        "Learn with guidance. Grow with confidence. Skip the guesswork—connect with mentors who understand your path and are here to help.",
+      image: "/mentee.png",
+    },
+    {
+      name: "Mentor",
+      description:
+        "Share your experience. Shape a journey. Inspire the next generation by guiding curious minds. Your insight can make a real difference.",
+      image: "/mentor.png",
+    },
+    {
+      name: "Sponsor",
+      description:
+        "Odogwu on the block. Support the future. Be a part of something bigger. Your sponsorship can empower learners and mentors alike.",
+      image: "/sponsor.png",
+    },
+  ];
+
   return (
     <div className="flex flex-col lg:grid grid-cols-6 items-center justify-items-center min-h-screen p-0 m-0 font-[family-name:var(--font-geist-sans)]">
       {/* Left Side */}
       <div className="flex flex-col items-start justify-start bg-blue-700 h-full w-full p-8 lg:col-span-4 bg-[url('/grid.png')]">
         <div className="h-full">
-          <p className="text-6xl lg:text-[10rem] font-bold text-left text-white z-10 ">
-            HandHeld<span className="text-amber-400">*</span>
-          </p>
-
-      
-          <p className="text-lg mt-4  lg:mt-0 lg:text-2xl font-semibold text-left text-white z-10">
+          <AnimatedText />
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1 }} // index * 1s delay
+            className="text-lg mt-4  lg:mt-0 lg:text-2xl font-semibold text-left text-white z-10"
+          >
             You're not alone on your tech journey.<br></br>
-          </p>
-          <p className="text-left text-white z-10 font-light">
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.5 }} // index * 1s delay
+            className="text-left text-white z-10 font-light"
+          >
             We connect curious, passionate learners with experienced mentors
             <br></br>who’ve been where you are—so you can grow with guidance,
             not guesswork.
-          </p>
+          </motion.p>
+
           <Image
             alt="3d character"
             src={"/sally.png"}
@@ -30,9 +60,38 @@ export default function Home() {
             height={500}
             className="absolute bottom-0 right-50 z-0 greyscale-[100%] hidden lg:block"
           />
+          <div className="grid  sm:grid-cols-2 md:grid-cols-3 mt-28 w-fit gap-4">
+            {participants?.map((participant, ind) => (
+              <motion.div
+                key={ind}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: ind * 1 }} // index * 1s delay
+                className="lg:w-[200px] max-w-md rounded-lg overflow-hidden bg-white/10 backdrop-blur-sm"
+              >
+                <Image
+                  alt="grid"
+                  src={participant.image}
+                  width={200}
+                  height={200}
+                  className="w-full lg:w-[200px] bg-amber-400"
+                />
+
+                <div className="p-2">
+                  {" "}
+                  <p className="text-lg font-semibold">{participant.name}</p>
+                  <p className="text-sm font-light">
+                    {participant.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        <p className="text-sm hidden lg:block">handheld © · {date.getFullYear()}</p>
+        <p className="text-sm hidden lg:block">
+          handheld © · {date.getFullYear()}
+        </p>
       </div>
 
       {/* Right Side */}

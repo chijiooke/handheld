@@ -5,16 +5,19 @@ export default function Form() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-[rgba(255,255,255,0.01)] backdrop-blur-xs p-8 rounded-xl shadow-lg w-full max-w-md">
-        <div className="flex items-center justify-center mb-6">
+        <div className="flex items-center justify-center mb-3 ">
           <Image alt="logo" src={"/logo.svg"} width={20} height={20} />
         </div>
-        <h2 className="text-2xl font-semibold text-center text-white mb-6">
-          Join Us
-        </h2>
+        <h2 className="text-2xl font-semibold text-center text-white mb-1 relative">
+          Join the community <span className="bg-green-600 text-white p-1 rounded-lg text-xs absolute -top-2 right-10 rotate-12">free (₦0)</span>
+        </h2>{" "}
+        <p className="text-center text-white z-10 font-light text-xs mb-5">
+        Don’t miss a thing! Get the latest updates and be the first to know when we go live.
+        </p>
         <form action="#" method="POST" className="space-y-6">
           {/* Full Name */}
           <div className="flex flex-col">
-            <label htmlFor="full-name" className="text-white mb-2">
+            <label htmlFor="full-name" className="text-white mb-2 text-sm">
               Full Name
             </label>
             <input
@@ -29,7 +32,7 @@ export default function Form() {
 
           {/* Location */}
           <div className="flex flex-col">
-            <label htmlFor="location" className="text-white mb-2">
+            <label htmlFor="location" className="text-white mb-2 text-sm">
               Location
             </label>
             <input
@@ -44,7 +47,7 @@ export default function Form() {
 
           {/* Email (Optional) */}
           <div className="flex flex-col">
-            <label htmlFor="email" className="text-white mb-2">
+            <label htmlFor="email" className="text-white mb-2 text-sm">
               Email (Optional)
             </label>
             <input
@@ -58,7 +61,7 @@ export default function Form() {
 
           {/* Phone Number */}
           <div className="flex flex-col">
-            <label htmlFor="phone" className="text-white mb-2">
+            <label htmlFor="phone" className="text-white mb-2 text-sm">
               Phone Number
             </label>
             <input
@@ -73,7 +76,7 @@ export default function Form() {
 
           {/* Role Dropdown */}
           <div className="flex flex-col">
-            <label htmlFor="role" className="text-white mb-2">
+            <label htmlFor="role" className="text-white mb-2 text-sm">
               I am a...
             </label>
             <select
@@ -88,7 +91,7 @@ export default function Form() {
 
           {/* Field of Interest */}
           <div className="flex flex-col">
-            <label htmlFor="interest" className="text-white mb-2">
+            <label htmlFor="interest" className="text-white mb-2 text-sm">
               Field of Interest
             </label>
             <select
