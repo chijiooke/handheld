@@ -37,20 +37,20 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1 }} // index * 1s delay
-            className="text-lg mt-4  lg:mt-0 lg:text-2xl font-semibold text-left text-white z-10"
+            transition={{ duration: 0.6, delay: 1 }}
+            className="text-lg mt-4 lg:mt-0 lg:text-2xl font-semibold text-left text-white z-10"
           >
-            You're not alone on your tech journey.<br></br>
+            You&#39;re not alone on your tech journey.<br />
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.5 }} // index * 1s delay
+            transition={{ duration: 0.6, delay: 1.5 }}
             className="text-left text-white z-10 font-light"
           >
             We connect curious, passionate learners with experienced mentors
-            <br></br>who’ve been where you are—so you can grow with guidance,
-            not guesswork.
+            <br />
+            who&#39;ve been where you are—so you can grow with guidance, not guesswork.
           </motion.p>
 
           <Image
@@ -60,13 +60,14 @@ export default function Home() {
             height={500}
             className="absolute bottom-0 right-50 z-0 greyscale-[100%] hidden lg:block"
           />
-          <div className="grid  sm:grid-cols-2 md:grid-cols-3 mt-28 w-fit gap-4">
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 mt-28 w-fit gap-4">
             {participants?.map((participant, ind) => (
               <motion.div
                 key={ind}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: ind * 1 }} // index * 1s delay
+                transition={{ duration: 0.6, delay: ind * 1 }}
                 className="lg:w-[200px] max-w-md rounded-lg overflow-hidden bg-white/10 backdrop-blur-sm"
               >
                 <Image
@@ -76,9 +77,7 @@ export default function Home() {
                   height={200}
                   className="w-full lg:w-[200px] bg-amber-400"
                 />
-
                 <div className="p-2">
-                  {" "}
                   <p className="text-lg font-semibold">{participant.name}</p>
                   <p className="text-sm font-light">
                     {participant.description}
