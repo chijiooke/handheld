@@ -57,7 +57,7 @@ export default function Home() {
         />
         <meta name="twitter:image" content="/mentee.png" />
       </Head>
-      <div className="flex flex-col lg:grid grid-cols-6 items-center justify-items-center min-h-screen p-0 m-0 font-[family-name:var(--font-geist-sans)]">
+      <div className="flex flex-col lg:grid grid-cols-6 items-center justify-items-center min-h-screen p-0 m-0 font-[family-name:var(--font-geist-sans)] bg-[#0a0a0a]">
         {/* Left Side */}
         <div className="flex flex-col items-start justify-start bg-blue-700 h-full w-full p-8 lg:col-span-4 bg-[url('/grid.png')]">
           <div className="h-full">
@@ -75,10 +75,9 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.5 }}
-              className="text-left text-white z-10 font-light"
+              className="text-left text-white z-10 font-light max-w-[500px]"
             >
               We connect curious, passionate learners with experienced mentors
-              <br />
               who&#39;ve been where you are—so you can grow with guidance, not
               guesswork.
             </motion.p>

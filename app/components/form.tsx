@@ -19,7 +19,7 @@ export default function Form() {
       toast.error("Please fill in all required fields.");
       return;
     }
-  
+
     const payload = {
       fullName,
       location,
@@ -36,19 +36,18 @@ export default function Form() {
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify(payload),
       });
-  
+
       const result = await response.json();
       toast.dismiss();
       toast.success(result.result || "Form submitted successfully!");
-  
+
       // Reset form fields
       setFullName("");
       setLocation("");
       setEmail("");
-      setPhone("234");  // Reset phone to default value
+      setPhone("234"); // Reset phone to default value
       setRole("mentee");
       setInterest("frontend");
-  
     } catch (error) {
       console.error("Submission failed", error);
       toast.error("Submission failed");
@@ -56,10 +55,9 @@ export default function Form() {
       setLoading(false);
     }
   };
-  
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center ">
       <div className="bg-[rgba(255,255,255,0.01)] backdrop-blur-xs p-8 rounded-xl shadow-lg w-full max-w-md">
         <div className="flex items-center justify-center mb-3 ">
           <Image alt="logo" src="/logo.svg" width={20} height={20} />
@@ -107,6 +105,12 @@ export default function Form() {
               <option value="abuja">Abuja</option>
               <option value="london">London</option>
               <option value="accra">Accra</option>
+              <option value="munich">Munich</option>
+              <option value="paris">Paris</option>
+              <option value="tokyo">Tokyo</option>
+              <option value="newyork">New York</option>
+              <option value="cairo">Cairo</option>
+              <option value="nairobi">Nairobi</option>
             </select>
           </div>
 
@@ -177,7 +181,11 @@ export default function Form() {
               disabled={isLoading}
               type="button"
               onClick={() => handleSubmit()}
-              className={`px-6 py-2 ${isLoading ? 'bg-gray-500' : 'bg-blue-500'} text-white rounded-lg ${isLoading ? 'hover:bg-gray-500' : 'hover:bg-blue-600'}  focus:outline-none focus:ring-2 focus:ring-blue-500`}
+              className={`px-6 py-2 ${
+                isLoading ? "bg-gray-500" : "bg-blue-500"
+              } text-white rounded-lg ${
+                isLoading ? "hover:bg-gray-500" : "hover:bg-blue-600"
+              }  focus:outline-none focus:ring-2 focus:ring-blue-500`}
             >
               {isLoading ? "Submitting..." : "Submit"}
             </button>
