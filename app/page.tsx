@@ -90,7 +90,7 @@ export default function Home() {
               className="absolute bottom-0 right-50 z-0 greyscale-[100%] hidden lg:block"
             />
 
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 mt-28 w-fit gap-4">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 mt-28 w-fit gap-4 text-white">
               {participants?.map((participant, ind) => (
                 <motion.div
                   key={ind}
